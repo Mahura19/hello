@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,4 +22,11 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get("/test",[HomeController::class,"test"])->name("test");
+Route::middleware("auth")->group(function (){
+    Route::resource("user",\App\Http\Controllers\UserController::class);
+    Route::resource("category",CategoryController::class);
+    Route::resource("post",PostController::class);
+});
+
