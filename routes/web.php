@@ -25,7 +25,7 @@ Auth::routes();
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get("/test",[HomeController::class,"test"])->name("test");
 Route::middleware("auth")->group(function (){
-    Route::resource("user",\App\Http\Controllers\UserController::class);
+    Route::resource("user",\App\Http\Controllers\UserController::class)->middleware("isAdmin");
     Route::resource("category",CategoryController::class);
     Route::resource("post",PostController::class);
 });

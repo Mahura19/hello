@@ -12,8 +12,8 @@
             <h4>{{$post->title}}</h4>
             <hr>
             <div class="mb-3">
-                <span class="badge bg-secondary">{{\App\Models\Category::find($post->category_id)->title}}</span>
-                <span class="badge bg-secondary">{{\App\Models\User::find($post->user_id)->name}}</span>
+                <span class="badge bg-secondary">{{$post->category->title}}</span>
+                <span class="badge bg-secondary">{{$post->user->name}}</span>
                 <span class="badge bg-secondary"><i class="bi bi-calendar"></i> {{$post->created_at->format("d M Y")}}</span>
                 <span class="badge bg-secondary"><i class="bi bi-clock"></i> {{$post->created_at->format("h : i A")}}</span>
             </div>

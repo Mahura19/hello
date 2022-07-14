@@ -18,7 +18,11 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::latest("id")->get();
+        $categories = Category::latest("id")
+            ->when(Auth::user()->isAuthor(), function ($q) {
+                return $q->where("user_id", Auth::id());
+            })
+            ->get();
         return view("category.index",compact("categories"));
     }
 
@@ -56,6 +60,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
+//        return $category->posts;
         return redirect()->route("category.index");
     }
 
@@ -67,6 +72,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
+        Gate::authorize("update",$category);
         return view("category.edit",compact("category"));
     }
 

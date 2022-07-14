@@ -16,8 +16,9 @@
     <a href="{{route('category.create')}}" class="list-group-item list-group-item-action">Create Category</a>
 </div>
 
-<p class="small text-black-50 mb-1">Manage Category</p>
+@admin
+<p class="small text-black-50 mb-1">Manage Users</p>
 <div class="list-group mb-3">
     <a href="{{route('user.index')}}" class="list-group-item list-group-item-action">User List</a>
-
 </div>
+@endadmin

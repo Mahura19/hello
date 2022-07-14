@@ -18,22 +18,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-         \App\Models\User::factory(10)->create();
-         User::factory()->create([
-             "name" => "mahura",
-             "email"=> "mahura@gmail.com",
-             "password"=> Hash::make("asdffdsa")
-         ]);
 
-        $categories = ["IT news","Food & Drinks","Travel","Crypto News"];
-        foreach ($categories as $category){
-            Category::factory()->create([
-                "title" => $category,
-                "slug" => Str::slug($category),
-                "user_id"=> User::inRandomOrder()->first()->id
-            ]);
-        }
+        $this->call([
+            UserSeeder::class,
+            CategorySeeder::class,
+            PostSeeder::class
+        ]);
 
-        Post::factory(250)->create();
     }
 }

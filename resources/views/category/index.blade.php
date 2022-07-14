@@ -17,7 +17,9 @@
                     <tr>
                         <th>#</th>
                         <th>Title</th>
+                        @notAuthor
                         <th>Owner</th>
+                        @endnotAuthor
                         <th>Control</th>
                         <th>Created</th>
                     </tr>
@@ -31,9 +33,11 @@
                             <br>
                             <span class="badge bg-secondary">{{$category->slug}}</span>
                         </td>
+                        @notAuthor
                         <td>
-                            {{\App\Models\User::find($category->user_id)->name}}
+                            {{$category->user->name}}
                         </td>
+                        @endnotAuthor
                         <td>
                             @can("update",$category)
                             <a href="{{route("category.edit",$category->id)}}" class="btn btn-sm btn-outline-dark">
